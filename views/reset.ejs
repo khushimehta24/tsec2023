@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Welcome to A&A 3D!</title>
+    <style type="text/css">
+      #logo {
+        width: 6rem;
+        margin-bottom: 1.2rem;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      .container {
+        padding: 4rem 3rem 20px 3.5rem;
+        background-color: #fff;
+        width: 20rem;
+        height: 20rem;
+        border-radius: 1px;
+        position: absolute;
+      }
+
+      h2 {
+        margin-bottom: 1.5rem;
+      }
+
+      .reset-link {
+        /* color: #fa2a3e; */
+        text-decoration: none;
+      }
+
+      .btn-container {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* CSS */
+      .button-5 {
+        align-items: center;
+        background-clip: padding-box;
+        background-color: #fa2a3e;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: system-ui, -apple-system, system-ui, "Helvetica Neue",
+          Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        line-height: 1.25;
+        margin: 0;
+        min-height: 3rem;
+        padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+        position: relative;
+        text-decoration: none;
+        transition: all 250ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        width: auto;
+      }
+
+      .button-5:hover,
+      .button-5:focus {
+        background-color: #fd364a;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+        cursor: pointer;
+      }
+
+      .button-5:hover {
+        transform: translateY(-1px);
+      }
+
+      .button-5:active {
+        background-color: #c85000;
+        box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="https://res.cloudinary.com/ana3d/image/upload/v1672397487/Web_j2dy1g.png"
+        alt="AnA 3D Logo"
+        id="logo"
+      />
+
+      <h2>Reset Your ANA 3D Password</h2>
+      <p>Hello <%=name%>!</p>
+      <p>Please use this link to continue resetting your password:</p>
+      <div class="btn-container">
+        <a class="reset-link" href="<%=link%>">
+          <button class="button-5">Reset Password</button>
+        </a>
+      </div>
+      <p>- A&A 3D</p>
+    </div>
+  </body>
+</html>
