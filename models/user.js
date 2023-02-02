@@ -98,6 +98,11 @@ const userSchema = new mongoose.Schema(
       }
     ],
 
+    questionnaire: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Questionnaire",
+    },
+
     properties: [
       {
         type: mongoose.Schema.Types.ObjectId,

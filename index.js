@@ -19,11 +19,13 @@ app.use(express.urlencoded({ extended: true }));
 // Importing Routes
 const authRoute = require("./routes/auth");
 const propertyRoute = require("./routes/property");
+const userRoute = require("./routes/user");
 
 
 // Routes
 app.use("/api/auth", authRoute);
 app.use("/api/property", propertyRoute);
+app.use("/api/user", userRoute);
 
 
 app.get("/api", (req, res) => {
