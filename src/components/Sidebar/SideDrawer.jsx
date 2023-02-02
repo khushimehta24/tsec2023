@@ -93,7 +93,7 @@ function ResponsiveDrawer(props) {
                                         setToken('');
                                         localStorage.setItem("ccpUser", JSON.stringify(null))
                                         localStorage.setItem("ccpToken", JSON.stringify(''))
-                                    }} sx={{ backgroundColor: '#BC09C7', color: 'white', border: '2px solid #BC09C7', width: '100%', textTransform: 'none', '&:hover': { color: '#BC09C7', border: '2px solid #BC09C7' }, fontSize: { md: '15px', sm: '10px', xs: '10px' } }}>Logout</Button>
+                                    }} sx={{ color: '#BC09C7' }}>Logout</Button>
                                 }
 
                                 </Grid>

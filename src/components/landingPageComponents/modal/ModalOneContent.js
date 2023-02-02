@@ -3,7 +3,7 @@ import { Box } from '@mui/system'
 import { useWeb3React } from '@web3-react/core'
 import React, { useContext } from 'react'
 import { useEffect } from 'react'
-import axiosHandler from '../../../helpers/axiosHandler'
+import errorHandler from '../../../helpers/errorHandler';
 import { offerContext } from '../../../offerContext'
 import { connectMetaMask, connectWalletConnect, fetchAccount, walletlink } from '../../../services/connectors'
 import { isMobile } from "react-device-detect";
@@ -56,7 +56,7 @@ function ModalOneContent({ activeStep, setActiveStep }) {
                                 activate(walletlink)
                                 fetchAccount(user, setUser, account, setAccount, token, setToken, setUserBrand)
                             } catch (err) {
-                                axiosHandler("Coin Base Extension not found")
+                                errorHandler("Coin Base Extension not found")
                             }
                         }} sx={style.btn}>
                             <CardMedia sx={style.img} component='img' image="https://login.xyz/img/coinbase.svg" />

@@ -12,13 +12,14 @@ function App() {
 
   const [user, setUser] = useState(null)
   const [token, setToken] = useState('')
+  const [center, setCenter] = useState({ lat: 13.084622, lon: 80.248357 })
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('ccpUser')))
     setToken(localStorage.getItem('ccpToken'))
   }, [])
 
-  const context = { user, setUser, token, setToken }
+  const context = { user, setUser, token, setToken, center, setCenter }
 
 
   return (

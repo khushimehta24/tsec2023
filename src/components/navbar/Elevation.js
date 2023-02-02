@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { offerContext } from '../../offerContext';
+import logo from '../../images/logo.png'
+
 function ElevationScroll(props) {
     const { children, window } = props;
     const trigger = useScrollTrigger({
@@ -63,8 +65,8 @@ export default function ElevateAppBar(props) {
                             >
                                 <MenuIcon />
                             </IconButton>
-                            LOGO
-                            {/* <CardMedia component='img' onClick={() => navigate('/')} image={logo} sx={{ width: '90px', cursor: 'pointer' }} /> */}
+
+                            <CardMedia component='img' onClick={() => navigate('/')} image={logo} sx={{ width: '90px', cursor: 'pointer' }} />
 
                         </Grid>
                         {/* <Grid item>
@@ -78,7 +80,7 @@ export default function ElevateAppBar(props) {
                                 localStorage.setItem("ccpUser", null)
                                 localStorage.setItem("ccpToken", "")
                                 navigate('/')
-                            }} sx={{ backgroundColor: '#BC09C7', color: 'white', border: '2px solid #BC09C7', textTransform: 'none', '&:hover': { color: '#BC09C7', border: '2px solid #BC09C7' }, fontSize: { md: '15px', sm: '10px', xs: '10px' }, width: '40%', marginLeft: '5%' }}>Logout</Button>}
+                            }} sx={{ color: '#BC09C7' }}>Logout</Button>}
                         </Grid>
                     </Grid>
                 </Toolbar>
