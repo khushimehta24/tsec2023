@@ -8,7 +8,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu'
-import { Button, Card, CardContent, CardMedia, Divider, Grid, IconButton, InputAdornment, Menu, MenuItem, Popper, TextField } from '@mui/material';
+import { Button, Avatar, Card, CardContent, CardMedia, Divider, Grid, IconButton, InputAdornment, Menu, MenuItem, Popper, TextField } from '@mui/material';
 // import Navbar from '../Navbar';
 import { Visibility } from '@mui/icons-material';
 import { useState } from 'react';
@@ -44,7 +44,7 @@ export default function ElevateAppBar(props) {
 
 
     return (
-        <Box >
+        <Box>
             <AppBar
                 position="fixed"
                 sx={openDrawer ? { flexGrow: 1, width: { sm: `calc(100% - ${narrowDrawerWidth}px)` }, boxShadow: 'none', backgroundColor: '#F5F6F8', color: 'black' } : { flexGrow: 1, boxShadow: 'none', width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundColor: '#F5F6F8', color: 'black' }}
@@ -66,12 +66,16 @@ export default function ElevateAppBar(props) {
                             {/* <CardMedia component='img' onClick={() => navigate('/')} image={logo} sx={{ width: '90px', cursor: 'pointer' }} /> */}
 
                         </Grid>
-                        <Grid item>
-                            {/* <Navbar currentUser={props.currentUser} loadWeb3={props.loadWeb3} /> */}
+                        {/* <Grid item>
+                            <Navbar currentUser={props.currentUser} loadWeb3={props.loadWeb3} />
+                        </Grid> */}
+                        <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', width: '20%' }}>
+                            <Avatar>H</Avatar>
+                            <Button onClick={() => navigate('/login')} sx={{ backgroundColor: '#BC09C7', color: 'white', border: '2px solid #BC09C7', textTransform: 'none', '&:hover': { color: '#BC09C7', border: '2px solid #BC09C7' }, fontSize: { md: '15px', sm: '10px', xs: '10px' }, width: '40%', marginLeft: '5%' }}>Login</Button>
                         </Grid>
                     </Grid>
                 </Toolbar>
             </AppBar>
-        </Box >
+        </Box>
     );
 }
