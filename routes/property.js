@@ -13,9 +13,11 @@ const {
     getPropertiesByLocation,
     getPropertiesByCity,
     addPictures,
- 
+    getInterestedUsersByPropertyId,
+    getSinglePropertyWithTenants
 
 } = require("../controllers/property");
+
 
 // Initializing router
 const router = new express.Router();
@@ -31,10 +33,11 @@ router.get("/my", authorizeJWT.verifyJWT, getMyProperties);
 router.get("/single/:id", getSingleProperty);
 router.get("/location/:location", getPropertiesByLocation);
 router.get("/city/:city", getPropertiesByCity);
-router.post("/sample/pictures", upload.fields([
-    {
-        name: "pictures",
-        maxCount: 30
-    }
-]), addPictures)
+router.post("/sample/pictures", addPictures)
+router.get("/interested-users/:id", authorizeJWT.verifyJWT, getInterestedUsersByPropertyId);
+router.get("/single/compatibility/:id", authorizeJWT.verifyJWT, getSinglePropertyWithTenants);
+
+
+
+
 module.exports = router;

@@ -83,13 +83,23 @@ const propertySchema = new mongoose.Schema(
         tenants: [
             {
                 type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
                 trim: true
             }
         ],
         owner: {
             type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
             trim: true
-        }
+        },
+        interestedUsers: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+                trim: true
+            }
+        ],
+
     },
     {
         timestamps: true,

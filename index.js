@@ -33,9 +33,9 @@ app.get("/api", (req, res) => {
 });
 
 // Error Handling for Multer
-app.use((error, req, res, next) => {
-  console.log('This is the rejected field ->', error.field);
-});
+// app.use((error, req, res, next) => {
+//   console.log('This is the rejected field ->', error.field);
+// });
 
 // Listening on the port
 app.listen(PORT, () => {

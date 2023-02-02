@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Questionnaire = require("../models/questionnaire");
 const Property = require("../models/property");
+const { sendEmail } = require("../utils/email");
 
 const questions = [
   {
@@ -59,8 +60,11 @@ const questions = [
       "More than 40,000 INR",
     ],
   },
-
   {
+    question: "Are you a student or a working professional?",
+    options: ["Student", "Working Professional"],
+  },
+  { 
     question: "What are your work hours like?",
     options: [
       "I have a 9-5 job",
@@ -123,12 +127,17 @@ const getQuestions = (req, res) => {
 const submitResponses = async (req, res) => {
     try {
         const user = req.user;
-        const questionnaire = new Questionnaire({
+        console.log(user);
+        console.log(req.body);
+        let questionnaire = new Questionnaire({
             ...req.body,
             byUser: user._id,
         });
         questionnaire = await questionnaire.save();
+        
         user.questionnaire = questionnaire._id;
+        
+        
         await user.save();
         res.status(201).json({
             message: "Questionnaire submitted successfully",
@@ -142,8 +151,122 @@ const submitResponses = async (req, res) => {
     }
 };
 
+const showInterest = async (req, res) => {
+    try {
+        const user = req.user;
+        const property = await Property.findById(req.params.id).populate("owner");
+        if (!property) {
+            return res.status(404).json({
+                message: "Property not found",
+            });
+        }
+        // if (Object.values(user.verified).includes(false)) {
+        //     return res.status(400).json({
+        //         message: "Please verify your account before showing interest",
+        //     });
+        // }
 
+        
+        if (property.owner == user._id) {
+            return res.status(400).json({
+                message: "You cannot show interest in your own property",
+            });
+        }
+        if (property.interestedUsers.includes(user._id)) {
+            return res.status(400).json({
+                message: "You have already shown interest in this property",
+            });
+        }
+        property.interestedUsers.push(user._id);
+        await property.save();
+        user.interestedProperties.push(property._id);
+        await user.save();
+
+        const emailRes = await sendEmail({
+            subject: `Interested Tenant on Roomble`,
+            emailId: property.owner.email,
+            filename: "interestedtenant",
+            fileOptions: {
+                name: property.owner.name,
+                link: process.env.CLIENT_URL
+            },
+        });
+        res.status(200).json({
+            message: "Interest shown successfully",
+            property,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Something went wrong",
+            error,
+        });
+    }
+};
+
+const tenantApproval = async (req, res) => {
+    try {
+        const user = req.user;
+        const { approved, tenantId } = req.body;
+        const property = await Property.findById(req.params.id).populate("owner");
+
+        const tenant = await User.findById(tenantId);
+        console.log(property.owner._id, user._id);
+        if (!property) {
+            return res.status(404).json({
+                message: "Property not found",
+            });
+        }
+        if (property.owner._id.toString() != user._id.toString()) {
+            return res.status(400).json({
+                message: "You are not the owner of this property",
+            });
+        }
+        if (!property.interestedUsers.includes(req.body.tenantId)) {
+            return res.status(400).json({
+                message: "This user has not shown interest in this property",
+            });
+        }
+        if (approved) {
+            property.interestedUsers = property.interestedUsers.filter(
+                (id) => id != tenantId
+            );
+            await property.save();
+            property.tenants.push(tenantId);
+            await property.save();
+            tenant.stayedAt.push(property._id);
+            await tenant.save();
+            
+            res.status(200).json({
+                message: "Tenant approved successfully",
+                property,
+            });
+        } else {
+            property.interestedUsers = property.interestedUsers.filter(
+                (id) => id != tenantId
+            );
+            await property.save();
+            tenant.interestedProperties = tenant.interestedProperties.filter(
+                (id) => id != property._id
+            );
+            await tenant.save();
+        
+            res.status(200).json({
+                message: "Tenant rejected successfully",
+                property,
+            });
+        }
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Something went wrong",
+            error,
+        });
+    }
+};
 module.exports = {
   getQuestions,
   submitResponses,
+  showInterest,
+  tenantApproval,
+  
 };

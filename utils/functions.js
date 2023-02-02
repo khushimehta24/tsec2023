@@ -5,6 +5,7 @@ const removeSensitiveData = (data) => {
     data.updatedAt = undefined;
     data.__v = undefined;
     data.profilepicture = undefined;
+    data.otp = undefined;
     
     return data;
   };

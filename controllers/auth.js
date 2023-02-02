@@ -403,6 +403,7 @@ const verifyOtp = async (req, res) => {
       if (user.otp.email === req.body.emailotp && user.otp.phone === req.body.phoneotp) {
           user.verified.email = true;
           user.verified.phone = true;
+          user.verified.pan = true;
           await user.save();
           res.status(200).json({
               message: "User verified",

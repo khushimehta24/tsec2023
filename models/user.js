@@ -120,18 +120,25 @@ const userSchema = new mongoose.Schema(
     verified: {
       phone: {
         type: Boolean,
+        default: false,
       },
       email: {
         type: Boolean,
+        default: false,
       },
       pan: {
         type: Boolean,
+        default: false,
       },
-      aadhar: {
-        type: Boolean,
-      },
+   
     },
 
+    interestedProperties: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Property",
+      }
+    ],
 
     tokens: [
       {
