@@ -5,6 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import SignupPage from '../pages/SignupPage';
 import DashboardPage from '../pages/DashboardPage';
+import AllTrendingProperty from './../pages/AllTrendingProperty';
+import Property from './../components/Property/Property';
 
 export default function MainRouter() {
     // function PrivateRouter() {
@@ -29,6 +31,8 @@ export default function MainRouter() {
                 <Route exact path='/' element={<DashboardPage />} />
                 <Route exact path='/login' element={<LoginPage />} />
                 <Route exact path='/signup' element={<SignupPage />} />
+                <Route exact path='/offers' element={<AllTrendingProperty />} />
+                <Route exact path='/propertydetails/:id' element={<Property/>} />
 
             </Routes>
         </>
