@@ -54,6 +54,14 @@ const propertySchema = new mongoose.Schema(
             type: String,
             trim: true,
         },
+        pincode: {
+            type: Number,
+            trim: true,
+        },
+        state: {
+            type: String,
+            trim: true,
+        },
         furnishing_status: {
             type: String,
             trim: true,
