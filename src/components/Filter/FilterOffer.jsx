@@ -8,7 +8,6 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { useState } from 'react';
 
 function FilterProperty() {
-    useEffect(())
     return (
         <>
 
