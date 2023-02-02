@@ -19,3 +19,6 @@ class ModelPredictSerializer(serializers.Serializer):
     def get_validation_exclusions(self):
         exclusions = super(ModelPredictSerializer, self).get_validation_exclusions()
         return exclusions + ['description']
+
+class StatisticsSerializer(serializers.Serializer):
+    area_location = serializers.CharField()
