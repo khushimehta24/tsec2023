@@ -3,6 +3,7 @@ import { Outlet, Navigate } from 'react-router-dom';
 import { offerContext } from '../offerContext';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
+import SignupPage from '../pages/SignupPage';
 
 export default function MainRouter() {
     // function PrivateRouter() {
@@ -25,6 +26,8 @@ export default function MainRouter() {
         <>
             <Routes>
                 <Route exact path='/' element={<LoginPage />} />
+                <Route exact path='/signup' element={<SignupPage />} />
+
             </Routes>
         </>
     )
