@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import HorizontalLinearStepper from './StepperLogin';
@@ -16,7 +17,7 @@ const style = {
 };
 
 export default function LoginModal(props) {
-    const { open, setOpen } = props
+    const [open,setOpen]=useState(true)
 
     return (
         <div>

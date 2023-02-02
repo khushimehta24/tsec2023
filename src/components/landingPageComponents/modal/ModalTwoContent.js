@@ -3,8 +3,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import * as Yup from "yup";
 import { Formik, Form, yupToFormErrors } from "formik";
-import TextField from '../../TextField/TextField'
-import UserServices from '../../../services/UserServices';
+import {TextField} from '@mui/material'
 import { useContext } from 'react';
 import { offerContext } from '../../../offerContext';
 import { CardMedia, Grid } from '@mui/material';
@@ -47,20 +46,7 @@ function ModalTwoContent({ setActiveStep, activeStep }) {
 
     const handleSubmit = async (values) => {
         // console.log(token)
-        await UserServices.updateMe({ email: values.email }, token)
-            .then((res) => {
-                // console.log(res.data);
-                localStorage.setItem("deOffersUser", JSON.stringify(res.data))
-                setUser(res.data)
-                setCheck(true);
-                setTimeout(() => {
-                    setActiveStep(activeStep + 1);
-                }, 2000);
-            })
-            .catch((err) => {
-                // console.log(values);
-                console.log(err);
-            })
+        
     }
 
     return (

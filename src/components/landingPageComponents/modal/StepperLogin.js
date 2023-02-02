@@ -9,8 +9,6 @@ import ModalOneContent from './ModalOneContent';
 import { useContext } from 'react';
 import { offerContext } from '../../../offerContext';
 import ModalTwoContent from './ModalTwoContent';
-import { useWeb3React } from '@web3-react/core';
-import Web3 from 'web3';
 import ModalThreeContent from './ModalThreeContent';
 import { useNavigate } from 'react-router';
 
@@ -21,7 +19,6 @@ export default function HorizontalLinearStepper({ open, setOpen }) {
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
     const { user, setUser, account, setAccount } = useContext(offerContext)
-    const { deactivate } = useWeb3React()
     const isStepOptional = (step) => {
         return step === 2;
     };
@@ -85,7 +82,6 @@ export default function HorizontalLinearStepper({ open, setOpen }) {
                             color="inherit"
                             disabled={activeStep === 0}
                             onClick={() => {
-                                deactivate();
                                 localStorage.clear();
                                 setUser({});
                                 setAccount('')
