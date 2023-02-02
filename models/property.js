@@ -14,14 +14,13 @@ const propertySchema = new mongoose.Schema(
             type: String,
             trim: true,
         }],
-        coordinates: {
-            lat: {
-                type: Number
-            },
-            lon: {
-                type: Number
-            }
-
+        lat: {
+            type: Number,
+            trim: true,
+        },
+        lon: {
+            type: Number,
+            trim: true,
         },
         posted_on : {
             type: String,

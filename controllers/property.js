@@ -9,7 +9,6 @@ const addProperty = async (req, res) => {
         const user = req.user;
         let property = new Property({
             ...req.body,
-            coordinates: JSON.parse(req.body.coordinates),
             owner: user._id
         });
         if (req.files.pictures) {
