@@ -7,6 +7,8 @@ const storage = multer.diskStorage({
     try {
       if (file.fieldname == "profilePic") {
         cb(null, "uploads/profilepictures");
+      } else if (file.fieldname == "pictures") {
+        cb(null, "uploads/propertypictures");
       }
     } catch (err) {
       console.log(err);
@@ -24,7 +26,8 @@ const storage = multer.diskStorage({
 const fileFilter = (req, file, cb) => {
   try {
     if (
-      file.fieldname == "profilePic" 
+      file.fieldname == "profilePic" ||
+      file.fieldname == "pictures"
     ) {
       if (
         file.mimetype === "image/jpg" ||

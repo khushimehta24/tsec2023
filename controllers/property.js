@@ -2,7 +2,7 @@ const Property = require("../models/property");
 const User = require("../models/user");
 
 const axios = require("axios");
-
+const cloudinary = require("../utils/cloudinary");
 const addProperty = async (req, res) => {
     try {
         
@@ -11,8 +11,25 @@ const addProperty = async (req, res) => {
             ...req.body,
             owner: user._id
         });
-
-
+        if (req.files.pictures) {
+         
+            const pictures = [];
+            const files = req.files.pictures;
+            let index = 0;
+            for(let picture of files) {
+              if (picture != null && picture) {
+                const result = await cloudinary.uploader.upload(picture.path, {
+                  public_id:
+                    "propertypictures/" + property._id + (index+1).toString(),
+                 
+                });
+                pictures.push(result.secure_url);
+              }
+              index++;
+        }
+        property.pictures = pictures;
+    }
+        
         property = await property.save();
         user.properties.push(property._id);
         await user.save();
@@ -110,6 +127,47 @@ const getSingleProperty = async (req, res) => {
     }
 }
 
+const addPictures = async (req, res) => {
+    try {
+        if (req.files.pictures) {
+         
+                const pictures = [];
+                const files = req.files.pictures;
+                let index = 0;
+                for(let picture of files) {
+                  if (picture != null && picture) {
+                    const result = await cloudinary.uploader.upload(picture.path, {
+                      public_id:
+                        "samples/" + picture.originalname + index.toString(),
+                     
+                    });
+                    pictures.push(result.secure_url);
+                  }
+                  index++;
+    }
+                
+               const properties = await Property.find({});
+                for (let property of properties) {
+                    const shuffled = pictures.sort(() => 0.5 - Math.random());
+                    let selected = shuffled.slice(0, 4);
+                    console.log(selected);
+                    property.pictures = selected;
+                    await property.save();
+                }
+          
+                
+              
+        }
+        res.status(200).json({
+            message: "Successfully added pictures!",
+        })
+
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+        });
+    }
+}
 
 module.exports = {
     addProperty,
@@ -117,5 +175,6 @@ module.exports = {
     getPropertiesByLocation,
     getPropertiesByCity,
     getMyProperties,
-    getSingleProperty
+    getSingleProperty,
+    addPictures
 }

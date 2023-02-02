@@ -10,6 +10,19 @@ const propertySchema = new mongoose.Schema(
             type: String,
             trim: true,
         },
+        pictures: [{
+            type: String,
+            trim: true,
+        }],
+        coordinates: {
+            lat: {
+                type: Number
+            },
+            lon: {
+                type: Number
+            }
+
+        },
         posted_on : {
             type: String,
             trim: true,
