@@ -1,6 +1,9 @@
 from rest_framework import serializers
 
 class ModelPredictSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    description = serializers.CharField()
+    max_occupants = serializers.IntegerField()
     posted_on = serializers.DateField(format="%Y-%m-%d", input_formats=['%Y-%m-%d'])
     bhk = serializers.IntegerField()
     size = serializers.IntegerField()

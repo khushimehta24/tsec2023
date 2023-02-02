@@ -12,6 +12,8 @@ class ModelPredictAPI(GenericAPIView):
     serializer_class = ModelPredictSerializer
 
     def post(self, request):
-        data = request.data
-        pred = model_predict(data)
+        request.data.pop('max_occupants')
+        request.data.pop('name')
+        request.data.pop('description')
+        pred = model_predict(request.data)
         return JsonResponse({'rent':list(pred)[0]}, status= status.HTTP_200_OK)
