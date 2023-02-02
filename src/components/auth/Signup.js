@@ -10,7 +10,7 @@ function Signup() {
                 <CardMedia component='img' image={img} />
             </Grid>
             <Grid item md={2} />
-            <Grid item md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+            <Grid item md={4} sx={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                 <SignupForm />
             </Grid>
             <Grid item md={2} />

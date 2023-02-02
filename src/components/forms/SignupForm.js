@@ -1,8 +1,11 @@
 import React from 'react'
+import HorizontalLinearStepper from './stepper/StepperModal'
 
 function SignupForm() {
     return (
-        <div>SignupForm</div>
+        <>
+            <HorizontalLinearStepper />
+        </>
     )
 }
 

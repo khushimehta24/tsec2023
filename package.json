@@ -11,6 +11,7 @@
     "@mui/material": "^5.6.4",
     "@mui/styled-engine-sc": "^5.6.1",
     "axios": "^0.27.2",
+    "firebase": "^9.16.0",
     "formik": "^2.2.9",
     "material-react-toastify": "^2.0.1",
     "moment": "^2.29.4",
@@ -26,6 +27,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^4.0.3",
     "swiper": "^6.8.4",
+    "uuid": "^9.0.0",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
