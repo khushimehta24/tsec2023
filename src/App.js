@@ -1,24 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import { offerContext } from './offerContext';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ToastContainer, toast } from 'material-react-toastify';
+import 'material-react-toastify/dist/ReactToastify.css';
+import MainRouter from './Router/MainRouter';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <offerContext.Provider value=''>
+      <ToastContainer />
+      <Router>
+        <MainRouter />
+      </Router>
+    </offerContext.Provider>
   );
 }
 

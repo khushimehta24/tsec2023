@@ -1,0 +1,15 @@
+.swiper-pagination-progressbar-fill{
+    background-color: rgba(54, 72, 106, 0.86) !important;
+}
+
+.swiper-pagination-progressbar{
+    height: 2px !important;
+}
+
+.swiper-button-next:after{
+    color: rgba(54, 72, 106, 0.86) !important;
+}
+
+.swiper-button-prev:after{
+    color: rgba(54, 72, 106, 0.86);
+}
