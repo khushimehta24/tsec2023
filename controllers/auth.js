@@ -326,6 +326,7 @@ const verifyTenant = async (req, res) => {
   try {
       const user = req.user;
       if (req.body.pan) {
+        const data = {"task_id":"74f4c926-250c-43ca-9c53-453e87ceacd1","group_id":"8e16424a-58fc-4ba4-ab20-5bc8e7c3c41e","data":{"id_number":req.body.pan}}
         const options = {
             method: 'POST',
             url: 'https://pan-card-verification1.p.rapidapi.com/v3/tasks/sync/verify_with_source/ind_pan',
@@ -334,7 +335,7 @@ const verifyTenant = async (req, res) => {
               'X-RapidAPI-Key': '66c4ff4adamsh9cf53b0229605acp18efbejsn93ac86eb28c9',
               'X-RapidAPI-Host': 'pan-card-verification1.p.rapidapi.com'
             },
-            data: '{"task_id":"74f4c926-250c-43ca-9c53-453e87ceacd1","group_id":"8e16424a-58fc-4ba4-ab20-5bc8e7c3c41e","data":{"id_number":"GEKPD4646M"}}'
+            data: JSON.stringify(data)
           };
           
           const response = await axios.request(options)
@@ -343,19 +344,20 @@ const verifyTenant = async (req, res) => {
           console.log(result);
          
           if(result.status === "id_found") {
-            if (result.name_on_card.toLowerCase().replace(/ /g,'') === user.name.toLowerCase().replace(/ /g,'')) {
+            const fullName = result.first_name + " "  + result.last_name
+            if (fullName.toLowerCase().replace(/ /g,'') === user.name.toLowerCase().replace(/ /g,'')) {
               console.log("Name verified")
               user.verified = {
                 pan: true,
                 ...user.verified
               }
             } else {
-              res.status(400).json({
+              return res.status(400).json({
                 message: "Name on PAN card does not match with the name on your account",
               });
             }
           } else {
-            res.status(400).json({
+            return res.status(400).json({
               message: "PAN card not found",
             });
           }
