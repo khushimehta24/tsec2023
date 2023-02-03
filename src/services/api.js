@@ -15,3 +15,19 @@ export const getMyProperties = async (token) => {
         return err;
     }
 }
+
+export const getInterestedUsersByOwner = async (token) => {
+    try {
+        const response = await axios.get(`${apiUrl}/property/interested-users/owner/all`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            });
+        return response.data;
+
+    } catch (err) {
+        return err;
+    }
+
+}
+

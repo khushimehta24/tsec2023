@@ -4,6 +4,7 @@ import { offerContext } from '../offerContext'
 import { getMyProperties } from '../services/api'
 import { Grid } from '@mui/material'
 import OfferCard from '../components/landingPageComponents/card/OfferCard';
+import ViewUsers from '../components/manage/ViewUsers'
 function Manage() {
     const { user } = useContext(offerContext)
 
@@ -20,6 +21,7 @@ function Manage() {
     return (
         <>
             <SideDrawer currentUser={user}>
+            <ViewUsers/>
             <h2>My Properties</h2>
             <Grid container sx={{ marginTop: '1%' }} spacing={2}>
                 {properties && properties.map((property, index) => {
