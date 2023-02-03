@@ -14,8 +14,8 @@ def generate_desc(prompt):
     frequency_penalty=0,
     presence_penalty=0
     )
-    print(response.choices[0].text)
-    return response.choices[0].text
+    text = (response.choices[0].text).replace('\n','')
+    return text
     
 def generate_img(prompt):
     OPENAI_API_KEY = "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"
