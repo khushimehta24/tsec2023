@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import SideDrawer from '../Sidebar/SideDrawer'
 import { useParams } from 'react-router';
+import { styled } from '@mui/material/styles';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import PropertyServices from '../../services/PropertyServices';
 import 'swiper/swiper.min.css'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, CardMedia, Card, CardContent } from '@mui/material';
 import LoadingPage from '../../pages/LoadingPage';
 import LoginModal from './../landingPageComponents/modal/LoginModal';
-import { async } from 'q';
 import PredictServices from '../../services/PredictServices';
+import Compatible from '../../images/Compatible.jpeg'
+import AppWidgetSummary from '../AppWidgetSummary/AppWidgetSummary';
 const Property = () => {
     const params = useParams();
     let id = params.id
@@ -17,19 +20,54 @@ const Property = () => {
     const [facts, setFacts] = useState({})
     console.log(id)
     const [propertyDetails, setPropertyDetails] = useState()
+    const token = localStorage.getItem("ccpToken")
+    console.log(token)
+    const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+        height: 10,
+        borderRadius: 5,
+        [`&.${linearProgressClasses.colorPrimary}`]: {
+            backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+        },
+        [`& .${linearProgressClasses.bar}`]: {
+            borderRadius: 5,
+            backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+        },
+    }));
+    let n = 0
+    const findTrue = (a) => {
+        if (a === true) {
+            n = n + 1
+        }
+        return n
+    }
     useEffect(() => {
         const func = async () => {
-            await PropertyServices.getOneProperty(id)
-                .then(async (res) => {
-                    console.log(typeof (`${res.data.data.area_location}`))
-                    await PredictServices.getStats({ 'area_location': `${res.data.data.area_location}` })
-                        .then((res) => {
-                            console.log(res.data)
-                            setFacts(res.data)
-                        })
-                    setPropertyDetails(res.data.data)
-                    setLoading(false)
-                })
+            if (token) {
+                await PropertyServices.getOnePropertywithCompatibility(id, token)
+                    .then(async (res) => {
+                        await PredictServices.getStats({ 'area_location': `${res.data.data.area_location}` })
+                            .then((res) => {
+                                console.log(res.data)
+                                setFacts(res.data)
+                            })
+                        setPropertyDetails(res.data.data)
+                        setLoading(false)
+                        console.log(res.data.data)
+                    })
+            }
+            else {
+                await PropertyServices.getOneProperty(id)
+                    .then(async (res) => {
+                        console.log(res.data.data.area_location)
+                        await PredictServices.getStats({ 'area_location': `${res.data.data.area_location}` })
+                            .then((res) => {
+                                console.log(res.data)
+                                setFacts(res.data)
+                            })
+                        setPropertyDetails(res.data.data)
+                        setLoading(false)
+                    })
+            }
         }
         func()
     }, [])
@@ -101,17 +139,49 @@ const Property = () => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid container>
-                            <Grid item md={12}>
+                        <Grid container sx={{ margin: '3%' }}>
+                            <Grid item container md={6}>
                                 <Typography variant='h5'>Some facts of this place:</Typography>
-                            </Grid>
-                            <Grid item md={12} sx={{ margin: '0% 5%' }}>
-                                <ul>
+                                <Grid container item md={12} sx={{ margin: '0% 5%', display: 'flex', justifyContent: 'space-between' }}>
                                     {
-                                        console.log(Object.keys(facts))
-                                        
+                                        Object.values(facts).map((fact) => {
+                                            return <Grid item xs={12} sm={6} md={3}>
+                                                <AppWidgetSummary title="Total Items" total={12315} color="warning" icon={'carbon:inventory-management'} />
+                                            </Grid>
+                                        })
+
                                     }
-                                </ul>
+                                </Grid>
+                            </Grid>
+                            <Grid item md={1}/>
+                            <Grid item md={5}>
+                                <Typography variant='h5'>Tenants</Typography>
+                                {
+                                    propertyDetails.tenants.map((tenant) => {
+                                        return <Card sx={{ maxWidth: 345 }}>
+                                            <CardContent>
+                                                <Typography gutterBottom variant="h5" component="div">
+                                                    {tenant.name}
+                                                </Typography>
+                                                <Typography>Verifed</Typography>
+                                                <BorderLinearProgress variant="determinate" value={100} sx={{ margin: '5%' }} />
+                                                <Typography>Compatibility Score</Typography>
+                                                <BorderLinearProgress variant="determinate" value={tenant.compatibilityScore} sx={{ margin: '5%' }} />
+                                                <Grid item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+
+                                                    <Card sx={{ maxWidth: 120, padding: '2%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+                                                        <img src={Compatible} alt="emote" width={30} height={30} />
+                                                        <Typography sx={{ textAlign: 'center' }}>{tenant.compatibleResponses.length} Compatible Answers</Typography>
+                                                    </Card>
+                                                    <Card sx={{ maxWidth: 120, padding: '2%' }}>
+                                                        <Typography>Icon</Typography>
+                                                        <Typography>{tenant.differentResponses.length} Different Answers</Typography>
+                                                    </Card>
+                                                </Grid>
+                                            </CardContent>
+                                        </Card>
+                                    })
+                                }
                             </Grid>
                         </Grid>
                         <LoginModal />
