@@ -22,13 +22,13 @@ function ModalOneContent({ activeStep, setActiveStep, json, setJson }) {
     return (
         <>
             <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', width: '100%' }}>
-                <h1 style={{ backgroundImage: 'linear-gradient(275.71deg, #7D93AF -50.16%, #BC09C7 124.58%)', WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text' }}> Hi, Good to see you!</h1>
+                <h1 style={{ backgroundImage: 'linear-gradient(275.71deg, #7D93AF -50.16%, #BC09C7 124.58%)', marginTop: '3%', WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text' }}> Hi, Good to see you!</h1>
                 <Grid sx={{ width: '100%' }}>
-                    <p style={{ fontSize: '12px' }}>Name</p>
+                    <p style={{ fontSize: '12px', marginTop: '3%' }}>Name</p>
                     <TextField sx={{ width: '100%' }} name='name' value={json.name} onChange={handleChange} placeholder='Name' />
-                    <p style={{ fontSize: '12px' }}>Email</p>
+                    <p style={{ fontSize: '12px', marginTop: '3%' }}>Email</p>
                     <TextField sx={{ width: '100%' }} name='email' value={json.email} onChange={handleChange} placeholder='Email' />
-                    <p style={{ fontSize: '12px' }}>Phone Number</p>
+                    <p style={{ fontSize: '12px', marginTop: '3%' }}>Phone Number</p>
                     <TextField sx={{ width: '100%' }} name='phone' value={json.phone} onChange={handleChange} placeholder='Phone Number' />
 
                 </Grid>

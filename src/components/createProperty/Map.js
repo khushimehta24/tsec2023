@@ -7,13 +7,14 @@ import marker from '../../images/marker.png'
 import { offerContext } from '../../offerContext';
 import { Map } from 'react-leaflet'
 import { OpenStreetMapProvider, GeoSearchControl } from 'leaflet-geosearch'
+import PropertyServices from '../../services/PropertyServices';
 
 const markerIcon = new L.Icon({
     iconUrl: marker,
     iconSize: [35, 35],
 })
 // make new leaflet element
-const Search = (props) => {
+const Search = ({ setLat, setLon, setProp2 }) => {
     const map = useMap();
     useEffect(() => {
         const provider = new OpenStreetMapProvider();
@@ -43,8 +44,17 @@ const Search = (props) => {
         console.log(searchControl)
         map.addControl(searchControl);
 
-        function searchEventHandler(result) {
+        async function searchEventHandler(result) {
             console.log(result.location);
+            setLat(result.location.y)
+            setLon(result.location.x)
+            await PropertyServices.getPropertiesByCoOrd(result.location.y, result.location.x)
+                .then((res) => {
+                    console.log(res);
+                    setProp2(res.data.data)
+                }).catch((e) => {
+                    console.log(e)
+                })
         }
 
         map.on('geosearch/showlocation', searchEventHandler);
@@ -58,7 +68,7 @@ const Search = (props) => {
 
 
 
-function Map2() {
+function Map2({ setLat, setLon, setProp2 }) {
     const mapRef = useRef();
     const { center, setCenter } = useContext(offerContext)
     const [load, setLoad] = useState(false)
@@ -85,7 +95,7 @@ function Map2() {
             style={{ width: '100%', height: '100%', borderRadius: '10px' }}
             ref={mapRef}
         >
-            <Search provider={new OpenStreetMapProvider()} />
+            <Search provider={new OpenStreetMapProvider()} setLat={setLat} setProp2={setProp2} setLon={setLon} />
             <TileLayer
                 url='https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=GCrOaQueIQ4AmML6iiTF'
                 attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'

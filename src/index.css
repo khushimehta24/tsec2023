@@ -4,6 +4,7 @@ body{
     background-color: #F5F6F8 !important;
     font-family: 'Poppins', sans-serif !important;
     overflow-x: hidden;
+    padding: 7px;
 }
 
 .MuiAccordion-root.deposit{

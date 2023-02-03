@@ -54,7 +54,7 @@ function ModalTwoContent({ setActiveStep, activeStep, json, setJson }) {
                 localStorage.setItem("ccpToken", res.data.data.token)
                 setLoading(false)
                 successHandler('Singed up successfully')
-                navigate('/')
+                setActiveStep(2)
             }).catch((e) => {
                 console.log(e)
                 errorHandler(e.response.data.message)
@@ -65,13 +65,12 @@ function ModalTwoContent({ setActiveStep, activeStep, json, setJson }) {
     return (
         <Grid container spacing={2} sx={{ padding: '2% 0' }}>
             <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', width: '100%' }}>
-                <h1 style={{ backgroundImage: 'linear-gradient(275.71deg, #7D93AF -50.16%, #BC09C7 124.58%)', WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text' }}> Hi, Good to see you!</h1>
                 <Grid sx={{ width: '100%' }}>
-                    <p style={{ fontSize: '12px' }}>Password</p>
+                    <p style={{ fontSize: '12px', marginTop: '3%' }}>Password</p>
                     <TextField sx={{ width: '100%' }} type='password' name='password' value={json.password} onChange={handleChange} placeholder='Password' />
-                    <p style={{ fontSize: '12px' }}>Age</p>
+                    <p style={{ fontSize: '12px', marginTop: '3%' }}>Age</p>
                     <TextField sx={{ width: '100%' }} name='age' value={json.age} onChange={handleChange} placeholder='age' />
-                    <p style={{ fontSize: '12px' }}>Gender</p>
+                    <p style={{ fontSize: '12px', marginTop: '3%' }}>Gender</p>
                     <Select
                         id="demo-simple-select"
                         value={gender}
@@ -89,7 +88,7 @@ function ModalTwoContent({ setActiveStep, activeStep, json, setJson }) {
                             ))
                         }
                     </Select>
-                    <p style={{ fontSize: '12px' }}>Profile Photo</p>
+                    <p style={{ fontSize: '12px', marginTop: '3%' }}>Profile Photo</p>
                     <Grid>
                         <TextField sx={{ width: '100%' }} type='file' name='profilePic' onChange={(event) => {
                             console.log(event.target.files[0])
