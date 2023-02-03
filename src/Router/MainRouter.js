@@ -32,10 +32,13 @@ export default function MainRouter() {
     return (
         <>
             <Routes>
-                <Route exact path='/' element={<FilterPage />} />
+                <Route exact path='/' element={<DashboardPage />} />
+                <Route exact path='/filter' element={<FilterPage />} /> 
                 <Route exact path='/login' element={<LoginPage />} />
                 <Route exact path='/signup' element={<SignupPage />} />
-                <Route exact path='/create' element={<CreateOffer />} />
+                <Route exact path='/create' element={<PrivateRouter />}>
+                    <Route exact path='/create' element={<CreateOffer />} />
+                </Route>
                 <Route exact path='/offers' element={<AllTrendingProperty />} />
                 <Route exact path='/propertydetails/:id' element={<Property />} />
 
