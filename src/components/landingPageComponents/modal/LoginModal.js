@@ -64,8 +64,8 @@ const style = {
     gridContainer: { margin: '5% 0', maxHeight: '50vh', overflow: 'scroll', "&::-webkit-scrollbar": { display: 'none' } },
 }
 
-export default function LoginModal() {
-    const [open, setOpen] = useState(true)
+export default function LoginModal({ open, setOpen }) {
+    // const [open, setOpen] = useState(true)
 
     const [dummy, setDummy] = useState([])
     const [loading, setLoading] = useState(false)
@@ -117,6 +117,7 @@ export default function LoginModal() {
             .then((res) => {
                 console.log(res);
                 setLoading(false)
+                setOpen(false)
                 successHandler("Successfully submitted")
             }).catch((e) => {
                 setLoading(false)
@@ -143,7 +144,7 @@ export default function LoginModal() {
                                         row
                                         aria-labelledby="demo-radio-buttons-group-label"
                                         defaultValue={json[index].answer}
-                                        
+
 
                                         // defaultValue={json[index].answer}
                                         name="radio-buttons-group"
@@ -151,7 +152,7 @@ export default function LoginModal() {
                                             let obj = {
                                                 "question": questions[index].question,
                                                 "answer": e.target.value,
-                                                
+
                                                 // "expectedAnswers": [e.target.value]
                                             }
                                             let arr = json
@@ -171,21 +172,21 @@ export default function LoginModal() {
                                     <Autocomplete
                                         multiple
                                         id="tags-standard"
-                                        
+
                                         options={question.options}
                                         getOptionLabel={(option) => option}
                                         defaultValue={[]}
                                         onChange={(e, value) => {
                                             let obj = {
                                                 "question": questions[index].question,
-                                               
+
                                                 "expectedAnswers": value
                                             }
                                             let arr = json
                                             arr[index] = {
                                                 ...arr[index],
                                                 ...obj
-                                                
+
                                             }
                                             console.log(arr)
                                             setJson(arr)
@@ -208,7 +209,7 @@ export default function LoginModal() {
                             </Box>}
 
                         </Grid>
-                        
+
                     </Grid>
                 </Box>
             </Modal>

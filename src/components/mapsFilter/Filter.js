@@ -4,13 +4,14 @@ import { offerContext } from '../../offerContext'
 import Map2 from '../createProperty/Map'
 import StarIcon from '@mui/icons-material/Star';
 import PropertyServices from '../../services/PropertyServices';
+import { useNavigate } from 'react-router';
 
 function Filter() {
     const { allProperties } = useContext(offerContext)
     const [prop2, setProp2] = useState(allProperties)
     const [lat, setLat] = useState(0)
     const [lon, setLon] = useState(0)
-
+    const navigate = useNavigate()
     // useEffect(() => {
     //     const func = async () => {
     //         await PropertyServices.getPropertiesByCoOrd(lat, lon)
@@ -33,8 +34,8 @@ function Filter() {
 
                 {
                     prop2.map((property, index) => {
-                        return <Grid item sx={{ width: '100%' }}>
-                            <Card sx={{ borderRadius: '10px' }}>
+                        return <Grid item sx={{ width: '100%' }} >
+                            <Card sx={{ borderRadius: '10px' }} onClick={() => navigate(`/propertydetails/${property._id}`)}>
                                 <CardContent>
                                     <Grid container columnSpacing={2}>
                                         <Grid item md={4}>
