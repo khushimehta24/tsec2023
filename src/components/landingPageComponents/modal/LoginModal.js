@@ -65,7 +65,7 @@ const style = {
 }
 
 export default function LoginModal() {
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
 
     const [dummy, setDummy] = useState([])
     const [loading, setLoading] = useState(false)
@@ -185,7 +185,7 @@ export default function LoginModal() {
                                             arr[index] = {
                                                 ...arr[index],
                                                 ...obj
-                                                
+
                                             }
                                             console.log(arr)
                                             setJson(arr)

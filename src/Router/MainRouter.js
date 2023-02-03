@@ -9,6 +9,7 @@ import CreateOffer from '../pages/CreateOffer'
 import FilterPage from '../pages/FilterPage';
 import AllTrendingProperty from './../pages/AllTrendingProperty';
 import Property from './../components/Property/Property';
+import Manage from '../pages/Manage';
 
 export default function MainRouter() {
     const navigate = useNavigate()
@@ -41,6 +42,7 @@ export default function MainRouter() {
                 </Route>
                 <Route exact path='/offers' element={<AllTrendingProperty />} />
                 <Route exact path='/propertydetails/:id' element={<Property />} />
+                <Route exact path="/userprofile" element={<Manage/>} />
 
             </Routes>
         </>
