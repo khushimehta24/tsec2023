@@ -3,6 +3,7 @@ import { Box } from '@mui/system'
 import React from 'react'
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { useNavigate } from 'react-router';
+import banner from '../../../images/banner.png'
 
 const style = {
     heading: { margin: '0px', color: '#292D32', fontFamily: 'Poppins', fontWeight: 'bolder', padding: '0px', fontSize: { sm: '15px', xs: '8px' }, display: 'flex', height: '100%', justifyContent: 'center', alignItems: 'center' },
@@ -16,6 +17,7 @@ function TrustedCommunities({ allCommunities }) {
     const navigate = useNavigate()
     return (
         <>
+
             <Grid sx={{ marginTop: '4%' }}>
                 <Typography variant='h4' sx={{ fontWeight: 'bolder', fontSize: { sm: '20px', xs: '15px' }, fontFamily: 'Poppins', margin: '0', padding: '0' }}>Trusted Communities</Typography>
                 <Grid container spacing={1} sx={{ height: '100%', marginTop: '1%' }}>

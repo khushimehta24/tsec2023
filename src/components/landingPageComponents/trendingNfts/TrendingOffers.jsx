@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { offerContext } from '../../../offerContext';
 import OfferCard from '../card/OfferCard';
+import banner from '../../../images/banner.png'
 
 function TrendingOffers({ allOffers, communities }) {
     const { eligible } = useContext(offerContext)
@@ -27,6 +28,7 @@ function TrendingOffers({ allOffers, communities }) {
     }
     return (
         <>
+
             <Grid sx={{ marginTop: '5%' }}>
                 <Grid container sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Grid item>

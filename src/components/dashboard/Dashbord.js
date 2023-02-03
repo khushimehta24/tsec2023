@@ -1,15 +1,17 @@
 import React, { useContext } from 'react'
-import { Grid, Button, Typography } from '@mui/material'
+import { Grid, Button, Typography, CardMedia } from '@mui/material'
 import { useNavigate } from 'react-router'
 import { offerContext } from './../../offerContext';
 import OfferCard from '../landingPageComponents/card/OfferCard';
-
+import banner from '../../images/banner.png'
 function Dashbord() {
     const navigate = useNavigate()
     const { allProperties } = useContext(offerContext)
     return (
         <>
-            <Grid sx={{ marginTop: '5%' }}>
+            <Grid >
+                <CardMedia component='img' image={banner} />
+
                 <Grid container sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Grid item>
                         <Typography variant='h4' sx={{ fontWeight: 'bolder', fontSize: { sm: '20px', xs: '15px' }, fontFamily: 'Poppins', margin: '0', padding: '0' }}>Trending Offers</Typography>
