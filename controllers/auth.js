@@ -407,6 +407,7 @@ const verifyOtp = async (req, res) => {
           await user.save();
           res.status(200).json({
               message: "User verified",
+              user: removeSensitiveData(user),
           });
       } else {
           res.status(400).json({

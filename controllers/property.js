@@ -341,6 +341,38 @@ const getInterestedUsersByPropertyId = async (req, res) => {
         });
     }
 };
+
+const getInterestedUsersByOwnerId = async (req, res) => {
+    try {
+ 
+        const properties = await Property.find({ owner: req.user._id }).populate("interestedUsers");
+        // if (!properties) {
+        //     return res.status(404).json({
+        //         message: "Properties not found",
+        //     });
+        // }
+        console.log(req.user);
+        const interestedUsers = [];
+        for (let property of properties) {
+            for (let user of property.interestedUsers) {
+                interestedUsers.push({
+                    property: property._id,
+                    user
+                });
+            }
+        }
+        res.status(200).json({
+            message: "Interested users fetched successfully",
+            users: interestedUsers,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Something went wrong",
+            error,
+        });
+    }
+};
+
 module.exports = {
     addProperty,
     getAllProperties,
@@ -352,5 +384,6 @@ module.exports = {
     getInterestedUsersByPropertyId,
     getSinglePropertyWithTenants,
     getPropertiesWithinRadius,
-    getCloseByProperties
+    getCloseByProperties,
+    getInterestedUsersByOwnerId,
 }

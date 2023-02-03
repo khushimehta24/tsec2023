@@ -16,7 +16,8 @@ const {
     getInterestedUsersByPropertyId,
     getSinglePropertyWithTenants,
     getPropertiesWithinRadius,
-    getCloseByProperties
+    getCloseByProperties,
+    getInterestedUsersByOwnerId
 
 } = require("../controllers/property");
 
@@ -40,6 +41,7 @@ router.get("/interested-users/:id", authorizeJWT.verifyJWT, getInterestedUsersBy
 router.get("/single/compatibility/:id", authorizeJWT.verifyJWT, getSinglePropertyWithTenants);
 router.get("/radius/:lat/:lon/:radius", getPropertiesWithinRadius);
 router.get("/close-by/:lat/:lon", getCloseByProperties);
+router.get("/interested-users/owner", authorizeJWT.verifyJWT, getInterestedUsersByOwnerId);
 
 
 
