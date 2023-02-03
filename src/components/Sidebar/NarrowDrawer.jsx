@@ -52,9 +52,9 @@ function NarrowDrawer() {
 
                     </Tooltip>
                     <Divider />
-                    <Tooltip title="Create Offer">
+                    <Tooltip title="Register Property">
                         <List>
-                            <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/addtoipfs')} >
+                            <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/create')} >
                                 <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
                                     <AddIcon sx={{ color: '#7382989c' }} />
                                 </ListItemIcon>
@@ -62,7 +62,7 @@ function NarrowDrawer() {
                         </List>
                     </Tooltip>
                     <Divider />
-                    <Tooltip title="All Offers">
+                    <Tooltip title="All Properties">
 
                         <List>
                             <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/offers')} >
@@ -75,7 +75,7 @@ function NarrowDrawer() {
 
                     <Divider />
 
-                    <Tooltip title="Settings">
+                    {/* <Tooltip title="Settings">
                         <List>
                             <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/createprofile')} >
                                 <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -83,7 +83,7 @@ function NarrowDrawer() {
                                 </ListItemIcon>
                             </ListItem>
                         </List>
-                    </Tooltip>
+                    </Tooltip> */}
                     {/* <Divider />
 
                     <Tooltip title="User Transactions">
@@ -121,9 +121,9 @@ function NarrowDrawer() {
 
                     </Tooltip>
                     <Divider />
-                    <Tooltip title="Create Offer">
+                    <Tooltip title="Register Property">
                         <List>
-                            <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/addtoipfs')} >
+                            <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/create')} >
                                 <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
                                     <AddIcon sx={{ color: '#7382989c' }} />
                                 </ListItemIcon>
@@ -131,7 +131,7 @@ function NarrowDrawer() {
                         </List>
                     </Tooltip>
                     <Divider />
-                    <Tooltip title="All Offers">
+                    <Tooltip title="All Properties">
 
                         <List>
                             <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/offers')} >
