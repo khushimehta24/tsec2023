@@ -141,7 +141,8 @@ const submitResponses = async (req, res) => {
         await user.save();
         res.status(201).json({
             message: "Questionnaire submitted successfully",
-            questionnaire
+            questionnaire,
+            user
         });
     } catch (error) {
         res.status(500).json({
