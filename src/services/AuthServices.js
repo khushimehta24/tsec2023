@@ -10,7 +10,20 @@ const signup = (data) => {
     });
 };
 
+const userQuestionnaire = (data, token) => {
+    return httpCommon.post('/user/questionnaire', {
+        "responses": [
+            ...data
+        ]
+    }, {
+        "headers": {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+}
+
 export default {
     login,
-    signup
+    signup,
+    userQuestionnaire
 }

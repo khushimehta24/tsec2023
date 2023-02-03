@@ -1,4 +1,4 @@
-import { Button, CardMedia, Grid, Tooltip, Typography, Radio, FormControlLabel, RadioGroup } from '@mui/material'
+import { Button, CardMedia, Grid, Tooltip, Typography, Radio, FormControlLabel, RadioGroup, Checkbox, FormGroup, Divider } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useContext, useState } from 'react'
 import { useEffect } from 'react'
@@ -13,7 +13,7 @@ const style = {
     heading: { fontFamily: 'Poppins', margin: 0, padding: 0, fontWeight: 'bold', color: 'black' },
     ptag: { margin: 0, padding: 0, fontSize: '10px', color: '#4e4e4e' },
     gridItem: { padding: { md: '10px', xs: '5px' }, height: { md: '100%', xs: 'auto' } },
-    gridContainer: { margin: '5% 0' },
+    gridContainer: { margin: '5% 0', maxHeight: '50vh', overflow: 'scroll', "&::-webkit-scrollbar": { display: 'none' } },
 }
 
 function ModalOneContent({ activeStep, setActiveStep }) {
@@ -34,28 +34,7 @@ function ModalOneContent({ activeStep, setActiveStep }) {
 
     return (
         <>
-            <Grid container sx={style.gridContainer}>
-                <Grid item container md={12}>
-                    {questions.map((question) => {
-                        return <Grid item xs={12}>
-                            <Typography>{question.question}</Typography>
-                            <RadioGroup
-                                name="radio-buttons-group"
-                            >
-                                {
-                                    question.options.map((option) => {
-                                        <FormControlLabel value={option} control={<Radio />} label={option} />
 
-                                    })
-                                }
-                            </RadioGroup>
-
-                        </Grid>
-                    })}
-
-
-                </Grid>
-            </Grid>
         </>
     )
 }
