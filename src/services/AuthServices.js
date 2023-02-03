@@ -22,8 +22,24 @@ const userQuestionnaire = (data, token) => {
     })
 }
 
+const panVerify = (data, token) => {
+    return httpCommon.post('/auth/verify', data, {
+        "headers": {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+}
+
+const verifyOTP = (data, token) => {
+    return httpCommon.put(`/auth/verify`, data, {
+        "headers": {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+}
+
 export default {
     login,
     signup,
-    userQuestionnaire
+    userQuestionnaire, panVerify, verifyOTP
 }

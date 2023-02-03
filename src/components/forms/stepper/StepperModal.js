@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router';
 import { Paragraph } from '../../app/Typography';
 import { NavLink } from 'react-router-dom';
 
-const steps = ["Contact Details", 'Setup your profile'];
+const steps = ["Contact Details", 'Setup your profile', 'Verify Your Details'];
 
 export default function HorizontalLinearStepper({ open, setOpen }) {
     const navigate = useNavigate()
@@ -48,11 +48,7 @@ export default function HorizontalLinearStepper({ open, setOpen }) {
                 {steps.map((label, index) => {
                     const stepProps = {};
                     const labelProps = {};
-                    if (isStepOptional(index)) {
-                        labelProps.optional = (
-                            <Typography variant="caption">Optional</Typography>
-                        );
-                    }
+
                     if (isStepSkipped(index)) {
                         stepProps.completed = false;
                     }
@@ -65,18 +61,14 @@ export default function HorizontalLinearStepper({ open, setOpen }) {
             </Stepper>
             <>
                 {
-                    activeStep === 0 ? <ModalOneContent setActiveStep={setActiveStep} activeStep={activeStep} json={json} setJson={setJson} /> : <ModalTwoContent setActiveStep={setActiveStep} activeStep={activeStep} json={json} setJson={setJson} />
+                    activeStep === 0 ? <ModalOneContent setActiveStep={setActiveStep} activeStep={activeStep} json={json} setJson={setJson} /> : activeStep === 1 ? <ModalTwoContent setActiveStep={setActiveStep} activeStep={activeStep} json={json} setJson={setJson} /> : <ModalThreeContent setActiveStep={setActiveStep} activeStep={activeStep} json={json} setJson={setJson} />
                 }
                 <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                     {activeStep === 0 || activeStep === 1 && <Button onClick={() => setActiveStep(0)}>
                         Back
                     </Button>}
                     <Box sx={{ flex: '1 1 auto' }} />
-                    {isStepOptional(activeStep) && (
-                        <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                            Skip
-                        </Button>
-                    )}
+
 
                     {activeStep === 0 ? <Button onClick={() => setActiveStep(1)}>
                         Next

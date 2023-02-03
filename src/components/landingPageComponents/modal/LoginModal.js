@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import HorizontalLinearStepper from './StepperLogin';
-import { Button, CardMedia, Grid, Tooltip, Typography, Radio, FormControlLabel, RadioGroup, Checkbox, FormGroup, Divider, CircularProgress } from '@mui/material'
+import { Button, Autocomplete, TextField, CardMedia, Grid, Tooltip, Typography, Radio, FormControlLabel, RadioGroup, Checkbox, FormGroup, Divider, CircularProgress } from '@mui/material'
 import QuestionnaireServices from '../../../services/QuestionnaireServices';
 
 import { useTheme } from '@mui/material/styles';
@@ -64,8 +64,8 @@ const style = {
     gridContainer: { margin: '5% 0', maxHeight: '50vh', overflow: 'scroll', "&::-webkit-scrollbar": { display: 'none' } },
 }
 
-export default function LoginModal({ open, setOpen }) {
-    // const [open, setOpen] = useState(false)
+export default function LoginModal() {
+    const [open, setOpen] = useState(true)
 
     const [dummy, setDummy] = useState([])
     const [loading, setLoading] = useState(false)
@@ -142,13 +142,17 @@ export default function LoginModal({ open, setOpen }) {
                                     <RadioGroup
                                         row
                                         aria-labelledby="demo-radio-buttons-group-label"
-                                        defaultValue={question.options[0]}
+                                        defaultValue={json[index].answer}
+                                        
+
+                                        // defaultValue={json[index].answer}
                                         name="radio-buttons-group"
                                         onChange={(e) => {
                                             let obj = {
                                                 "question": questions[index].question,
                                                 "answer": e.target.value,
-                                                "expectedAnswers": [e.target.value]
+                                                
+                                                // "expectedAnswers": [e.target.value]
                                             }
                                             let arr = json
                                             arr[index] = obj
@@ -158,11 +162,45 @@ export default function LoginModal({ open, setOpen }) {
                                     >
                                         {
                                             question.options.map((option) => {
-                                                return <FormControlLabel value={option} control={<Radio size="small" />} label={option} />
+                                                return <FormControlLabel key={option} value={option} control={<Radio size="small" />} label={option} />
                                             })
                                         }
                                     </RadioGroup>
                                     <Divider />
+                                    <p style={{ fontSize: '12px', marginTop: "5px" }}>Answers you'll accept</p>
+                                    <Autocomplete
+                                        multiple
+                                        id="tags-standard"
+                                        
+                                        options={question.options}
+                                        getOptionLabel={(option) => option}
+                                        defaultValue={[]}
+                                        onChange={(e, value) => {
+                                            let obj = {
+                                                "question": questions[index].question,
+                                               
+                                                "expectedAnswers": value
+                                            }
+                                            let arr = json
+                                            arr[index] = {
+                                                ...arr[index],
+                                                ...obj
+                                                
+                                            }
+                                            console.log(arr)
+                                            setJson(arr)
+                                        }}
+                                        renderInput={(params) => (
+                                            <TextField
+                                                {...params}
+                                                variant="outlined"
+                                                placeholder="Select one or more"
+                                                sx={{ width: '100%' }}
+                                            />
+                                        )}
+                                    />
+                                    <Divider />
+
                                 </Grid>
                             })}
                             {!loading ? <Button onClick={submit} sx={{ textTransform: 'none', height: '3.5rem', width: '100%', border: '2px solid #BC09C7', '&:hover': { border: '2px solid #BC09C7 !important', backgroundColor: 'white !important', color: '#BC09C7 !important' }, ...AddBtn }} > Submit</Button> : <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
@@ -170,6 +208,7 @@ export default function LoginModal({ open, setOpen }) {
                             </Box>}
 
                         </Grid>
+                        
                     </Grid>
                 </Box>
             </Modal>
