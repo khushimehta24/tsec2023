@@ -5,7 +5,7 @@ from django.http.response import JsonResponse
 from rest_framework import status,permissions
 from .model_call import model_predict
 from .openaitest import generate_desc, generate_img
-
+import re
 # Create your views here.
 
 class ModelPredictAPI(GenericAPIView):
@@ -55,7 +55,9 @@ class StatisticsAPI(GenericAPIView):
         cost_of_living = generate_desc(prompt2)
         prompt3 = f"Top 5 colleges near {data['area_location']}"
         colleges = generate_desc(prompt3)
-        return JsonResponse({'crime_rate': crime_rate, "cost_of_living": cost_of_living, "colleges": colleges}, status= status.HTTP_200_OK)
+        pattern = r"[0-9]\."
+        split_text = re.split(pattern, colleges)
+        return JsonResponse({'crime_rate': crime_rate, "cost_of_living": cost_of_living, "colleges": split_text[1:]}, status= status.HTTP_200_OK)
 
 
 class ImageAPI(GenericAPIView):
