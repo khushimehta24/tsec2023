@@ -356,7 +356,7 @@ const getInterestedUsersByOwnerId = async (req, res) => {
         for (let property of properties) {
             for (let user of property.interestedUsers) {
                 interestedUsers.push({
-                    property: property._id,
+                    property: property,
                     user
                 });
             }
