@@ -5,6 +5,8 @@ const axios = require("axios");
 const cloudinary = require("../utils/cloudinary");
 const { removeSensitiveData } = require("../utils/functions");
 const Questionnaire = require("../models/questionnaire");
+
+const geolib = require('geolib');
 const addProperty = async (req, res) => {
     try {
         
@@ -201,6 +203,66 @@ const getSinglePropertyWithTenants = async (req, res) => {
     }
 }
 
+const getPropertiesWithinRadius = async (req, res) => {
+    try {
+        const { lat, lon, radius } = req.params;
+      
+        const properties = await Property.find({}).populate("owner");
+        // .populate("reviews").populate("tenants");
+        const propertiesWithinRadius = [];
+        for(let property of properties) {
+            property.owner = removeSensitiveData(property.owner)
+            console.log(property.lat, property.lon)
+            const isClose = geolib.isPointWithinRadius(
+                { latitude: property.lat, longitude: property.lon },
+                { latitude: lat, longitude: lon },
+                radius*1000
+            );
+            console.log(isClose)
+            if(isClose) {
+                propertiesWithinRadius.push(property);
+            }
+
+        }
+        res.status(200).json({
+            message: "Successfully fetched all properties in the radius!",
+            data: propertiesWithinRadius
+        })
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+        });
+    }
+}
+const getCloseByProperties = async (req, res) => {
+    try {
+        const { lat, lon } = req.params;
+        
+        const properties = await Property.find({}).populate("owner");
+        // .populate("reviews").populate("tenants");
+        const propertiesWithinRadius = [];
+        for(let property of properties) {
+            property.owner = removeSensitiveData(property.owner)
+            const isClose = geolib.isPointWithinRadius(
+                { latitude: property.lat, longitude: property.lon },
+                { latitude: lat, longitude: lon },
+                10000
+            );
+            if(isClose) {
+                propertiesWithinRadius.push(property);
+            }
+
+        }
+        res.status(200).json({
+            message: "Successfully fetched all properties close by!",
+            data: propertiesWithinRadius
+        })
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+        });
+    }
+}
 const addPictures = async (req, res) => {
     try {
     //     if (req.files.pictures) {
@@ -288,5 +350,7 @@ module.exports = {
     getSingleProperty,
     addPictures,
     getInterestedUsersByPropertyId,
-    getSinglePropertyWithTenants
+    getSinglePropertyWithTenants,
+    getPropertiesWithinRadius,
+    getCloseByProperties
 }

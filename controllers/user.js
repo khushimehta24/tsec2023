@@ -230,10 +230,19 @@ const tenantApproval = async (req, res) => {
             property.interestedUsers = property.interestedUsers.filter(
                 (id) => id != tenantId
             );
+            tenant.stayedWith = [...tenant.stayedWith, ...property.tenants];
+            for (tenant of property.tenants) {
+                if (tenant.toString() != tenantId.toString()) {
+                    const tenantUser = await User.findById(tenant);
+                    tenantUser.stayedWith.push(tenantId);
+                    await tenantUser.save();
+                }
+            }
             await property.save();
             property.tenants.push(tenantId);
             await property.save();
             tenant.stayedAt.push(property._id);
+            
             await tenant.save();
             
             res.status(200).json({

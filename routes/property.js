@@ -14,7 +14,9 @@ const {
     getPropertiesByCity,
     addPictures,
     getInterestedUsersByPropertyId,
-    getSinglePropertyWithTenants
+    getSinglePropertyWithTenants,
+    getPropertiesWithinRadius,
+    getCloseByProperties
 
 } = require("../controllers/property");
 
@@ -36,6 +38,8 @@ router.get("/city/:city", getPropertiesByCity);
 router.post("/sample/pictures", addPictures)
 router.get("/interested-users/:id", authorizeJWT.verifyJWT, getInterestedUsersByPropertyId);
 router.get("/single/compatibility/:id", authorizeJWT.verifyJWT, getSinglePropertyWithTenants);
+router.get("/radius/:lat/:lon/:radius", getPropertiesWithinRadius);
+router.get("/close-by/:lat/:lon", getCloseByProperties);
 
 
 

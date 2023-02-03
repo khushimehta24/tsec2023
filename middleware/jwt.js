@@ -2,6 +2,7 @@
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
 const User = require("../models/user");
+const { removeSensitiveData } = require("../utils/functions");
 
 // JWT Authorization
 const authorizeJWT = {
@@ -20,7 +21,7 @@ const authorizeJWT = {
         });
         return;
       }
-
+      
       req.user = user;
       req.token = token;
 
