@@ -78,8 +78,8 @@ function LoginForm() {
             <CardMedia component='img' image={userImg} sx={{ width: '40%' }} />
             <h4 style={{ color: '#3F454F' }}>Hi, Welcome Back!</h4>
             <Grid item sx={{ width: '100%' }}>
-                <p style={{ fontSize: '12px' }}>Password</p>
-                <TextField sx={{ width: '100%' }} type='email' name='email' value={json.email} onChange={handleChange} placeholder='Wmail' />
+                <p style={{ fontSize: '12px' }}>Email</p>
+                <TextField sx={{ width: '100%' }} type='email' name='email' value={json.email} onChange={handleChange} placeholder='Email' />
                 <p style={{ fontSize: '12px' }}>Password</p>
                 <TextField sx={{ width: '100%' }} type='password' name='password' value={json.password} onChange={handleChange} placeholder='Password' />
             </Grid>

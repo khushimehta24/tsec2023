@@ -17,7 +17,7 @@ const style = {
 };
 
 export default function LoginModal(props) {
-    const [open,setOpen]=useState(true)
+    const [open, setOpen] = useState(false)
 
     return (
         <div>

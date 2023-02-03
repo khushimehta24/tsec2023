@@ -51,11 +51,11 @@ function BroadDrawer() {
                     </List>
                     <Divider />
                     <List>
-                        <ListItem button onClick={() => navigate('/addtoipfs')} >
+                        <ListItem button onClick={() => navigate('/create')} >
                             <ListItemIcon>
                                 <AddIcon sx={{ color: '#7382989c' }} />
                             </ListItemIcon>
-                            <ListItemText primary="Create Offer" />
+                            <ListItemText primary="Register Property" />
                         </ListItem>
                     </List>
                     <Divider />
@@ -64,18 +64,18 @@ function BroadDrawer() {
                             <ListItemIcon>
                                 <CollectionsBookmarkIcon sx={{ color: '#7382989c' }} />
                             </ListItemIcon>
-                            <ListItemText primary="All Offers" />
+                            <ListItemText primary="All Properties" />
                         </ListItem>
                     </List>
                     <Divider />
-                    <List>
+                    {/* <List>
                         <ListItem button onClick={() => navigate('/createprofile')} >
                             <ListItemIcon>
                                 <ManageAccountsIcon sx={{ color: '#7382989c' }} />
                             </ListItemIcon>
                             <ListItemText primary="Settings" />
                         </ListItem>
-                    </List>
+                    </List> */}
                 </div> : <div>
                     <Box className="logoBox" >
                     </Box>
@@ -102,11 +102,11 @@ function BroadDrawer() {
                     </List>
                     <Divider />
                     <List>
-                        <ListItem button onClick={() => navigate('/addtoipfs')} >
+                        <ListItem button onClick={() => navigate('/create')} >
                             <ListItemIcon>
                                 <AddIcon sx={{ color: '#7382989c' }} />
                             </ListItemIcon>
-                            <ListItemText primary="Create Offer" />
+                            <ListItemText primary="Register Property" />
                         </ListItem>
                     </List>
                     <Divider />
@@ -115,7 +115,7 @@ function BroadDrawer() {
                             <ListItemIcon>
                                 <CollectionsBookmarkIcon sx={{ color: '#7382989c' }} />
                             </ListItemIcon>
-                            <ListItemText primary="All Offers" />
+                            <ListItemText primary="All Properties" />
                         </ListItem>
                     </List>
                 </div>

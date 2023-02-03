@@ -19,7 +19,7 @@ const OfferCard = ({ property }) => {
                     {property.name.length > 13 ? property.name.substring(0, 13) + '...' : property.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {property.description}
+                    {property.description.length>50?property.name.substring(0,50)+'...':property.name}
                 </Typography>
             </CardContent>
         </Card>

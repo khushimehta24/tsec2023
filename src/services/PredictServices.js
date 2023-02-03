@@ -12,7 +12,9 @@ const registerProperty = (data, token) => {
         }
     });
 }
-
+const getStats = (data) => {
+    return httpLocal.post(`/model/statistics/`, data);
+}
 export default {
-    predict, registerProperty
+    predict, registerProperty, getStats
 }
