@@ -27,7 +27,7 @@ import { ConfirmationNumber } from "@mui/icons-material";
 
 moment().format();
 
-const fields = ["Email", "Phone", "Type"];
+const fields = ["BHK",  "Size", "City", "Rent", "Floor"];
 
 const columns = [
     {
@@ -67,7 +67,7 @@ const columns = [
   },
 ];
 function Row(props) {
-  const { row, setUsers, setReload, handleDelete } = props;
+  const { row, setUsers, setReload, handleAccept, handleReject} = props;
   const [open, setOpen] = React.useState(false);
   
   return (
@@ -128,11 +128,11 @@ function Row(props) {
             </TableCell>
             
             <TableCell>
-            <Tooltip title="Accept User">
+            <Tooltip title="Accept Tenant">
                 <IconButton
                     aria-label="accept"
                     onClick={() => {
-                        handleDelete(row.email)
+                       handleAccept(row.user._id, row.property._id)
                     }}
                 >
                     <DoneIcon />
@@ -142,11 +142,11 @@ function Row(props) {
            
         </TableCell>
         <TableCell>
-            <Tooltip title="Delete User">
+            <Tooltip title="Reject Tenant">
                 <IconButton
                     aria-label="delete"
                     onClick={() => {
-                        handleDelete(row.email)
+                        handleReject(row.user._id, row.property._id)
                     }}
                 >
                     <CancelIcon />
@@ -182,7 +182,7 @@ function Row(props) {
                         {field}:
                       </Typography>
                       <Typography sx={{ fontWeight: 500, fontSize: "1.2rem" }}>
-                        {row["property"][key]}
+                        {row.property[key]}
                     
                       </Typography>
                     </Box>
@@ -203,7 +203,8 @@ function ViewUsersTable({
   users,
   setUsers,
   setReload,
-  handleDelete
+  handleAccept,
+    handleReject
 }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -276,7 +277,8 @@ function ViewUsersTable({
                         key={row._id}
                         setUsers={setUsers}
                         setReload={setReload}
-                        handleDelete={handleDelete}
+                        handleAccept={handleAccept}
+                        handleReject={handleReject}
                       />
                     );
                   })}

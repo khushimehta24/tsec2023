@@ -9,7 +9,7 @@ import {
   Button,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { getInterestedUsersByOwner } from "../../services/api";
+import { getInterestedUsersByOwner, tenantApproval } from "../../services/api";
 
 import ViewUsersTable from "./ViewUsersTable";
 
@@ -18,7 +18,9 @@ function ViewUsers() {
   const [reload, setReload] = useState(null);
 
   const setUsersFn = async () => {
-    const response = await getInterestedUsersByOwner(localStorage.getItem("ccpToken"))
+    const response = await getInterestedUsersByOwner(
+      localStorage.getItem("ccpToken")
+    );
     if (response) {
       console.log(response.users);
       setUsers(response.users);
@@ -28,15 +30,24 @@ function ViewUsers() {
     }
   };
 
-  const handleDelete = async (email) => {
-    // const response = await deleteUser(localStorage.getItem("token"), email);
-    // if (response) {
-    //   alert("User Deleted Successfully!");
-    //   setReload(!reload);
-    // } else {
-    //   alert("An Error Occured!");
-    //   console.log(response);
-    // }
+  const handleReject = async (tenantId, propertyId) => {
+    const res = await tenantApproval(localStorage.getItem("ccpToken"), tenantId, propertyId, false);
+    if (res) {
+      setReload(!reload);
+    } else {
+      alert("An Error Occured!");
+      console.log(res);
+    }
+  };
+
+  const handleAccept = async (tenantId, propertyId) => {
+    const res = await tenantApproval(localStorage.getItem("ccpToken"), tenantId, propertyId, true);
+    if (res) {
+      setReload(!reload);
+    } else {
+      alert("An Error Occured!");
+      console.log(res);
+    }
   };
 
   useEffect(() => {
@@ -44,42 +55,32 @@ function ViewUsers() {
   }, [reload]);
 
   return (
- 
-      <div>
-
-        <Grid container>
-          <Grid
-            item
-            xs={12}
-           
+    <div>
+      <Grid container>
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              mt: { xs: "1.5rem", md: "none" },
+            }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                mt: { xs: "1.5rem", md: "none" },
-              }}
-            >
-              <h2>
-                Interested Tenants
-              </h2>
-
-             
-            </Box>
-            {!users ? (
-              <CircularProgress color="primary"/>
-            ) : (
-              <ViewUsersTable
-                users={users}
-                setUsers={setUsers}
-                setReload={setReload}
-                handleDelete={handleDelete}
-              />
-            )}
-          </Grid>
+            <h2>Interested Tenants</h2>
+          </Box>
+          {!users ? (
+            <CircularProgress color="primary" />
+          ) : (
+            <ViewUsersTable
+              users={users}
+              setUsers={setUsers}
+              setReload={setReload}
+            handleAccept={handleAccept}
+            handleReject={handleReject}
+            />
+          )}
         </Grid>
-      </div>
- 
+      </Grid>
+    </div>
   );
 }
 

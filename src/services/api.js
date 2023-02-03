@@ -31,3 +31,21 @@ export const getInterestedUsersByOwner = async (token) => {
 
 }
 
+export const tenantApproval = async (token, tenantId, propertyId, approved) => {
+    try {
+        const response = await axios.put(`${apiUrl}/user/approval/${propertyId}`, {
+            tenantId,
+            approved
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            });
+        return response.data;
+
+    } catch (err) {
+        return err;
+    }
+
+}
+
