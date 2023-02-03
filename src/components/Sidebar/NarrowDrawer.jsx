@@ -18,6 +18,7 @@ import { useContext } from 'react'
 import { offerContext } from '../../offerContext'
 import { useEffect } from 'react'
 import { isObject } from 'url/util'
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 function NarrowDrawer() {
     const navigate = useNavigate()
@@ -74,6 +75,16 @@ function NarrowDrawer() {
                     </Tooltip>
 
                     <Divider />
+                    <Tooltip title="Filter">
+
+                        <List>
+                            <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/filter')} >
+                                <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
+                                    <FilterAltIcon sx={{ color: '#7382989c' }} />
+                                </ListItemIcon>
+                            </ListItem>
+                        </List>
+                    </Tooltip>
 
                     {/* <Tooltip title="Settings">
                         <List>
@@ -137,6 +148,17 @@ function NarrowDrawer() {
                             <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/offers')} >
                                 <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
                                     <CollectionsBookmarkIcon sx={{ color: '#7382989c' }} />
+                                </ListItemIcon>
+                            </ListItem>
+                        </List>
+                    </Tooltip>
+                    <Divider />
+                    <Tooltip title="Filter">
+
+                        <List>
+                            <ListItem button sx={{ paddingLeft: '0px' }} onClick={() => navigate('/filter')} >
+                                <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
+                                    <FilterAltIcon sx={{ color: '#7382989c' }} />
                                 </ListItemIcon>
                             </ListItem>
                         </List>

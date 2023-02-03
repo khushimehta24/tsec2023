@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardMedia, CircularProgress, Grid, TextField } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, CircularProgress, Grid, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useContext } from 'react'
 import { MuiOtpInput } from 'mui-one-time-password-input'
@@ -6,12 +6,14 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AuthServices from '../../../services/AuthServices';
 import { offerContext } from '../../../offerContext';
+import { useNavigate } from 'react-router';
 
 function ModalThreeContent() {
     const [json, setJson] = useState({
         emailotp: '',
         phoneotp: ''
     })
+    const navigate = useNavigate()
     const [value, setValue] = useState('')
     const [load, setLoad] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -44,6 +46,7 @@ function ModalThreeContent() {
             .then((res) => {
                 console.log(res);
                 setLoad(false)
+                navigate('/')
             }).catch((e) => {
                 console.log(e)
                 setLoad(false)
@@ -67,15 +70,15 @@ function ModalThreeContent() {
 
                 {load2 && <><Grid item md={12}>
                     <p style={{ fontSize: '12px' }}>Verify Email <ArrowForwardIosIcon sx={{ fontSize: '12px' }} /> </p>
-                    <MuiOtpInput value={json.emailotp} onChange={handleChange} name='emailotp' length={6} />
+                    <TextField sx={{ width: '100%' }} value={json.emailotp} onChange={handleChange} name='emailotp' length={6} />
                 </Grid>
                     <Grid item md={12}>
                         <p style={{ fontSize: '12px' }}>Verify Phone Number <ArrowForwardIosIcon sx={{ fontSize: '12px' }} /> </p>
-                        <MuiOtpInput value={json.phoneotp} onChange={handleChange} name='phoneotp' length={6} />
+                        <TextField sx={{ width: '100%' }} value={json.phoneotp} onChange={handleChange} name='phoneotp' length={6} />
                     </Grid>
                     <Grid item md={12}>
                         {
-                            !load ? <CheckCircleIcon onClick={verifyEmail} /> : <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            !load ? <Button onClick={verifyEmail} sx={{ textTransform: 'none', height: '3.5rem', width: '100%', border: '2px solid #BC09C7', '&:hover': { border: '2px solid #BC09C7 !important', backgroundColor: 'white !important', color: '#BC09C7 !important' } }} > Verify</Button> : <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                                 <CircularProgress sx={{ backgroundColor: '#BC09C7', color: 'white', padding: '5px', borderRadius: '50%' }} />
                             </Box>
                         }

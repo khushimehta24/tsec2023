@@ -12,6 +12,7 @@ import PredictServices from '../../services/PredictServices';
 import { Box } from '@mui/system';
 import { offerContext } from '../../offerContext';
 import successHandler from '../../helpers/successHandler';
+import MapAdd from './MapAdd';
 
 const AddBtn = {
     color: 'white', background: '#BC09C7',
@@ -80,7 +81,7 @@ const CreateProperty = () => {
         console.log(Array.from(Array(parseInt(maxFloor + 1)).keys()))
         setFloorArray(Array.from(Array(parseInt(maxFloor) + 1).keys()))
         console.log(floorArray)
-    }, [maxFloor])
+    }, [])
 
     const checkRent = () => {
         console.log('hi')

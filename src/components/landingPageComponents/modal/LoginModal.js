@@ -65,13 +65,12 @@ const style = {
 }
 
 export default function LoginModal({ open, setOpen }) {
-    // const [open, setOpen] = useState(true)
 
     const [dummy, setDummy] = useState([])
     const [loading, setLoading] = useState(false)
     const [questions, setQuestions] = useState([])
     const [options, setOptions] = useState(null)
-    const { token } = useContext(offerContext)
+    const { token, user, setUser } = useContext(offerContext)
     const [json, setJson] = useState((Array(Number(15)).fill({
         "question": "",
         "answer": "",
@@ -117,6 +116,8 @@ export default function LoginModal({ open, setOpen }) {
             .then((res) => {
                 console.log(res);
                 setLoading(false)
+                setUser(res.data.user)
+                localStorage.setItem("ccpUser", JSON.stringify(res.data.user))
                 setOpen(false)
                 successHandler("Successfully submitted")
             }).catch((e) => {
@@ -204,7 +205,7 @@ export default function LoginModal({ open, setOpen }) {
 
                                 </Grid>
                             })}
-                            {!loading ? <Button onClick={submit} sx={{ textTransform: 'none', height: '3.5rem', width: '100%', border: '2px solid #BC09C7', '&:hover': { border: '2px solid #BC09C7 !important', backgroundColor: 'white !important', color: '#BC09C7 !important' }, ...AddBtn }} > Submit</Button> : <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                            {!loading ? <Button onClick={submit} sx={{ textTransform: 'none', height: '2.5rem', marginTop: '3%', width: '100%', border: '2px solid #BC09C7', '&:hover': { border: '2px solid #BC09C7 !important', backgroundColor: 'white !important', color: '#BC09C7 !important' }, ...AddBtn }} > Submit</Button> : <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                                 <CircularProgress sx={{ backgroundColor: '#BC09C7', color: 'white', padding: '5px', borderRadius: '50%' }} />
                             </Box>}
 

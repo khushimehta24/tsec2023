@@ -25,16 +25,16 @@ const AddBtn = {
 
 const Property = () => {
     const params = useParams();
-    const [open, setOpen] = useState(false)
-    const { user, token } = useContext(offerContext)
+    let user = JSON.parse(localStorage.getItem("ccpUser"))
+    const [open, setOpen] = useState(user && !user.questionnaire)
     let id = params.id
     const [loading, setLoading] = useState(true)
     const [facts, setFacts] = useState({})
     const [disable, setDisable] = useState(false)
     console.log(id)
     const [propertyDetails, setPropertyDetails] = useState()
-    // const token = localStorage.getItem("ccpToken")
-    console.log(token)
+    const token = localStorage.getItem("ccpToken")
+    console.log(token, open, 'open')
     const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
         height: 10,
         borderRadius: 5,
@@ -53,39 +53,40 @@ const Property = () => {
         }
         return n
     }
-    useEffect(() => {
-        user.questionnaire && setOpen(true)
-        const func = async () => {
-            if (token) {
-                await PropertyServices.getOnePropertywithCompatibility(id, token)
-                    .then(async (res) => {
-                        await PredictServices.getStats({ 'area_location': `${res.data.data.area_location}` })
-                            .then((res) => {
-                                console.log(res.data)
-                                setFacts(res.data)
-                            })
-                        setPropertyDetails(res.data.data)
-                        setLoading(false)
-                        console.log(res.data.data)
-                    })
-            }
-            else {
-                await PropertyServices.getOneProperty(id)
-                    .then(async (res) => {
-                        console.log(res.data.data.area_location)
-                        await PredictServices.getStats({ 'area_location': `${res.data.data.area_location}` })
-                            .then((res) => {
-                                console.log(res.data)
-                                setFacts(res.data)
-                            })
-                        setDisable(res.data.data.interestedUsers.includes(user._id))
-                        setPropertyDetails(res.data.data)
-                        setLoading(false)
-                    })
-            }
+    const func = async () => {
+        if (token) {
+            await PropertyServices.getOnePropertywithCompatibility(id, token)
+                .then(async (res) => {
+                    await PredictServices.getStats({ 'area_location': `${res.data.data.area_location}` })
+                        .then((res) => {
+                            console.log(res.data)
+                            setFacts(res.data)
+                        })
+                    setPropertyDetails(res.data.data)
+                    setLoading(false)
+                    console.log(res.data.data)
+                })
         }
+        else {
+            await PropertyServices.getOneProperty(id)
+                .then(async (res) => {
+                    console.log(res.data.data.area_location)
+                    await PredictServices.getStats({ 'area_location': `${res.data.data.area_location}` })
+                        .then((res) => {
+                            console.log(res.data)
+                            setFacts(res.data)
+                        })
+                    setDisable(user && res.data.data.interestedUsers.includes(user._id))
+                    setPropertyDetails(res.data.data)
+                    setLoading(false)
+                })
+        }
+    }
+    useEffect(() => {
+        user && !user.questionnaire && user.questionnaire === undefined && setOpen(true)
+        console.log(user)
         func()
-    }, [])
+    }, [user])
     const [loader, setLoader] = useState(false)
 
     const confirm = async () => {
@@ -203,8 +204,8 @@ const Property = () => {
 
                                     </Grid>
                                     <Grid item md={12}>
-                                        <Card>
-                                            <CardContent>
+                                        <Card sx={{ width: '100%' }}>
+                                            <CardContent sx={{ width: '100%' }}>
                                                 <h4>NearBy Colleges</h4>
                                                 {
                                                     facts.colleges.map((i) => {
@@ -242,8 +243,8 @@ const Property = () => {
                                                 </Typography>
                                                 <Typography>Verifed</Typography>
                                                 <BorderLinearProgress variant="determinate" value={100} sx={{ margin: '5%' }} />
-                                                <Typography>Compatibility Score</Typography>
-                                                <BorderLinearProgress variant="determinate" value={tenant.compatibilityScore} sx={{ margin: '5%' }} />
+                                                <Typography sx={{ display: 'flex', justifyContent: 'space-between' }}>Compatibility Score <strong>{tenant.compatibilityScore}%</strong></Typography>
+                                                <BorderLinearProgress backgroundColor='red' variant="determinate" value={tenant.compatibilityScore} sx={{ margin: '5%' }} />
                                                 <Grid item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
 
                                                     <Card sx={{ maxWidth: 120, padding: '2%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
@@ -261,10 +262,10 @@ const Property = () => {
                                 }
                             </Grid>
                         </Grid>
-                        <LoginModal open={open} setOpen={setOpen} />
                     </SideDrawer>
 
             }
+            <LoginModal open={open} setOpen={setOpen} />
         </>
     )
 }
