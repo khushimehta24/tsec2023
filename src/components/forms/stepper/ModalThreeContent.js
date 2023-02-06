@@ -53,6 +53,14 @@ function ModalThreeContent() {
             })
     }
 
+    const handleChangeEmail = (newvalue) => {
+        setJson({ ...json, 'emailotp': newvalue });
+    }
+
+    const handleChangePhone = (newvalue) => {
+        setJson({ ...json, 'phoneotp': newvalue });
+    }
+
     return (
         <>
             <Grid container sx={{ marginTop: '3%' }}>
@@ -69,14 +77,22 @@ function ModalThreeContent() {
                 </Grid>
 
                 {load2 && <><Grid item md={12}>
-                    <p style={{ fontSize: '12px' }}>Verify Email <ArrowForwardIosIcon sx={{ fontSize: '12px' }} /> </p>
-                    <TextField sx={{ width: '100%' }} value={json.emailotp} onChange={handleChange} name='emailotp' length={6} />
+                    <p style={{ fontSize: '12px', marginTop: '5%' }}>Verify Email <ArrowForwardIosIcon sx={{ fontSize: '12px' }} /> </p>
+                    {/* <TextField sx={{ width: '100%' }} value={json.emailotp} onChange={handleChange} name='emailotp' length={6} /> */}
+                    <MuiOtpInput
+                        length={6}
+                        value={json.emailotp} onChange={handleChangeEmail}
+                    />
                 </Grid>
                     <Grid item md={12}>
-                        <p style={{ fontSize: '12px' }}>Verify Phone Number <ArrowForwardIosIcon sx={{ fontSize: '12px' }} /> </p>
-                        <TextField sx={{ width: '100%' }} value={json.phoneotp} onChange={handleChange} name='phoneotp' length={6} />
+                        <p style={{ fontSize: '12px', marginTop: '5%' }}>Verify Phone Number <ArrowForwardIosIcon sx={{ fontSize: '12px' }} /> </p>
+                        {/* <TextField sx={{ width: '100%' }} value={json.phoneotp} onChange={handleChange} name='phoneotp' length={6} /> */}
+                        <MuiOtpInput
+                            length={6}
+                            value={json.phoneotp} onChange={handleChangePhone}
+                        />
                     </Grid>
-                    <Grid item md={12}>
+                    <Grid item md={12} sx={{ marginTop: '5%' }}>
                         {
                             !load ? <Button onClick={verifyEmail} sx={{ textTransform: 'none', height: '3.5rem', width: '100%', border: '2px solid #BC09C7', '&:hover': { border: '2px solid #BC09C7 !important', backgroundColor: 'white !important', color: '#BC09C7 !important' } }} > Verify</Button> : <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                                 <CircularProgress sx={{ backgroundColor: '#BC09C7', color: 'white', padding: '5px', borderRadius: '50%' }} />

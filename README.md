@@ -1,70 +1,74 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Logo](https://drive.google.com/uc?export=download&id=10ZWBt6IXHN2iiTtc0Nu7vZ7DuIBEoEgO)
 
-## Available Scripts
+### Team Members:  
+[Khushi Mehta](https://github.com/khushimehta24)  
+[Harsh Mangukiya](https://github.com/harsh0989)  
+[Rosita Dmello](https://github.com/rosita-dmello)   
+[Pratham Bhoir](https://github.com/Prathambhoir55)
 
-In the project directory, you can run:
+### Tech Stacks
+- Backend - Node JS 
+- Frontend - ReactJS  
+- ML - Python : TensorFlow, Sci-kit learn, Pytorch, NumPy, etc.
 
-### `npm start`
+The APIs are hosted here:
+https://caramelcheese-popcorn-backend.up.railway.app/api
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Our Vision
+Our vision is to create an webapp that helps people find the perfect place to live and the perfect roommate in any city or location. The app will allow users to search for properties and flats according to their budget and preferences, as well as match them with potential roommates based on their interests and lifestyle. It also predicts the rent based on the data provided by the property owner. We believe that this webapp will revolutionize the way people find places to live and make it easier to find the perfect flat and flatmate.     
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Website 
+Sign Up Page
+![App Screenshot](https://drive.google.com/uc?export=download&id=1dnwcJjt-t1FeQhNMB9TTlydvv0m4SpeW)
 
-### `npm run build`
+Verify PAN, email and phone number
+![App Screenshot](https://drive.google.com/uc?export=download&id=1oder3O2EJWXFNsI7ng4C4Jg36K_KX2qq)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Login Page
+![App Screenshot](https://drive.google.com/uc?export=download&id=1Lj755aWf_NLMcX7C343pE9Di5WNNknNe)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Dashboard
+![App Screenshot](https://drive.google.com/uc?export=download&id=1A3bn9WBRv1oztAjbQjlrlonFq3-LdEWp)
 
-### `npm run eject`
+Search
+![App Screenshot](https://drive.google.com/uc?export=download&id=1M70-vUtp6HcamXeQOR2kg1pkjfRFuPe4)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Answer the compatibility matching quiz to get the compatibility score of you and the tenants living in the property
+![App Screenshot](https://drive.google.com/uc?export=download&id=1EppTj1-PkKLCp7dTzWRyeoQTbCDENI6f)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Property details
+![App Screenshot](https://drive.google.com/uc?export=download&id=1kuueQLeLvRY0rjPBPnMYjNevN-qmrHgt)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+including details like tenants compatibility score, crime rate, cost of living and near by colleges
+![App Screenshot](https://drive.google.com/uc?export=download&id=1VgdnPZGSfO66TMBzk0JemjCGiS_gE_L2)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+Loading Screen
+![App Screenshot](https://drive.google.com/uc?export=download&id=1Dju2rdm0ESecha-QVdyEA72ExldhDy46)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Register a property
+![App Screenshot](https://drive.google.com/uc?export=download&id=1B5u1-KHTFLqPT3kiprVXET_yLbgrY2dt)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Fill the details and predict the rent according to the details provided
+![App Screenshot](https://drive.google.com/uc?export=download&id=18SR8Cz8MNeN9eyNVwNily6NE7grTZ541)
 
-### Code Splitting
+After predicting the rent, the description is also filled based on the details using openai api
+![App Screenshot](https://drive.google.com/uc?export=download&id=1M0a9q-RG7Pxai1yj2QG4gazBwIbD-fv6)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+User profile
+![App Screenshot](https://drive.google.com/uc?export=download&id=121ZIRNb1H06wEmVkFBkHmSmL-BFDcoz-)
 
-### Analyzing the Bundle Size
+## Feedback
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If you have any feedback, feel free to reach out to us.
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contributing
 
-### Advanced Configuration
+Contributions are always welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Please adhere to this project's `code of conduct`.

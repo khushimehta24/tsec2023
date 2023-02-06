@@ -25,11 +25,7 @@ function MapApp({ setLat, setLon, setProp2 }) {
         setCenter({ lat: position.coords.latitude, lon: position.coords.longitude });
         setLoad(false)
     }
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        }
-    }, [])
+
 
 
     return (

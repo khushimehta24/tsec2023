@@ -14,7 +14,7 @@ function Dashbord() {
 
                 <Grid container sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Grid item>
-                        <Typography variant='h4' sx={{ fontWeight: 'bolder', fontSize: { sm: '20px', xs: '15px' }, fontFamily: 'Poppins', margin: '0', padding: '0' }}>Trending Offers</Typography>
+                        <Typography variant='h4' sx={{ fontWeight: 'bolder', fontSize: { sm: '20px', xs: '15px' }, fontFamily: 'Poppins', marginTop: '13%', padding: '0' }}>Trending Properties</Typography>
                     </Grid>
                     <Grid item>
                         <Button onClick={() => navigate('/offers')}>Show More</Button>

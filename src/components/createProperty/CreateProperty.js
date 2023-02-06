@@ -57,6 +57,8 @@ const CreateProperty = () => {
     })
     const handleChange = (e) => {
         const name = e.target.name;
+        // setLoading(false)
+
         const value = e.target.value;
         setJson({ ...json, [name]: value });
     }
@@ -81,7 +83,7 @@ const CreateProperty = () => {
         console.log(Array.from(Array(parseInt(maxFloor + 1)).keys()))
         setFloorArray(Array.from(Array(parseInt(maxFloor) + 1).keys()))
         console.log(floorArray)
-    }, [])
+    }, [maxFloor])
 
     const checkRent = () => {
         console.log('hi')
@@ -116,7 +118,6 @@ const CreateProperty = () => {
             "rent": 0,
             'description': ''
         }
-
         await PredictServices.predict(data)
             .then((res) => {
                 console.log(res);
@@ -126,6 +127,7 @@ const CreateProperty = () => {
             })
             .catch((e) => {
                 console.log(e)
+                setLoading(false)
 
             })
 
@@ -177,7 +179,7 @@ const CreateProperty = () => {
                 <Grid item container md={7} sx={{ height: '80vh', overflow: 'scroll', "&::-webkit-scrollbar": { display: 'none' } }} >
                     <Grid item container md={12} columnSpacing={2} >
                         <Grid item md={12} sx={{ width: '300px', height: '300px' }}>
-                            <Map2 />
+                            <MapAdd />
                         </Grid>
                         <Grid item md={12} >
                             <div className="App">
