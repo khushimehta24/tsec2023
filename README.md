@@ -62,6 +62,11 @@ After predicting the rent, the description is also filled based on the details u
 User profile
 ![App Screenshot](https://drive.google.com/uc?export=download&id=121ZIRNb1H06wEmVkFBkHmSmL-BFDcoz-)
 
+
+ML model
+![App Screenshot](https://drive.google.com/uc?export=download&id=1Cbd3yoXxrHE7Sz_VEDcv2FU3Pgy2FQJa)
+
+![App Screenshot](https://drive.google.com/uc?export=download&id=1xag2LWkSQMBoQgq2P-xYZa4RY81ZHhDT)
 ## Feedback
 
 If you have any feedback, feel free to reach out to us.
