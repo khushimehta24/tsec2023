@@ -65,7 +65,7 @@ User profile
 
 ML model
 ![App Screenshot](https://drive.google.com/uc?export=download&id=1Cbd3yoXxrHE7Sz_VEDcv2FU3Pgy2FQJa)
-
+-
 ![App Screenshot](https://drive.google.com/uc?export=download&id=1xag2LWkSQMBoQgq2P-xYZa4RY81ZHhDT)
 ## Feedback
 
