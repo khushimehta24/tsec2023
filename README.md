@@ -30,6 +30,11 @@ Verify PAN, email and phone number
 Login Page
 ![App Screenshot](https://drive.google.com/uc?export=download&id=1Lj755aWf_NLMcX7C343pE9Di5WNNknNe)
 
+Email Verification
+![App Screenshot](https://drive.google.com/uc?export=download&id=1eTDHYyhpRm_Gh_9HbjRjs_cHj9scfUsg)
+
+Phone Verification
+![App Screenshot](https://drive.google.com/uc?export=download&id=1Xx4kkhe4_gcwQ70xWx6crF3YLjg-wxXm)
 
 Dashboard
 ![App Screenshot](https://drive.google.com/uc?export=download&id=1A3bn9WBRv1oztAjbQjlrlonFq3-LdEWp)
