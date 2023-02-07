@@ -31,7 +31,7 @@ Login Page
 ![App Screenshot](https://drive.google.com/uc?export=download&id=1Lj755aWf_NLMcX7C343pE9Di5WNNknNe)
 
 Email Verification
-![App Screenshot](https://drive.google.com/uc?export=download&id=1eTDHYyhpRm_Gh_9HbjRjs_cHj9scfUsg)
+![App Screenshot](https://drive.google.com/uc?export=download&id=13qZATe2U_Kn3nNwOu3D6H5qU7oJjHoRS)
 
 Phone Verification
 ![App Screenshot](https://drive.google.com/uc?export=download&id=1Xx4kkhe4_gcwQ70xWx6crF3YLjg-wxXm)
